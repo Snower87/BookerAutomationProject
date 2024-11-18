@@ -2,7 +2,8 @@ package core.settings;
 
 public enum ApiEndpoint {
     PING("/ping"),
-    BOOKING("/booking");
+    BOOKING("/booking"),
+    ID_10("/10");
 
     private final String path;
 
