@@ -64,10 +64,10 @@ public class APIClient {
     }
 
     //GET-запрос на эндпоинт /bookingId(10)
-    public Response getBookingById(ApiEndpoint ids) {
+    public Response getBookingById(String ids) {
         return getRequestSpec()
                 .when()
-                .get(ApiEndpoint.BOOKING.getPath() + ids.getPath()) // используем ENUM для эндпоинта /getBookingIds
+                .get(ApiEndpoint.BOOKING.getPath() + ids) // используем ENUM для эндпоинта /getBookingIds
                 .then()
                 .statusCode(200) //ожидаемый статус-код 200 OK
                 .extract()

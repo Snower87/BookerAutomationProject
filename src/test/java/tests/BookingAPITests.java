@@ -13,11 +13,10 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static core.settings.ApiEndpoint.ID_10;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class HealthCheckTests {
+public class BookingAPITests {
     private APIClient apiClient;
     private ObjectMapper objectMapper;
 
@@ -60,7 +59,7 @@ public class HealthCheckTests {
     @Test
     public void testGetBookingId10() throws JsonProcessingException {
         //Выполняем запрос к эндпоинту /bookingId через APIClient
-        Response response = apiClient.getBookingById(ID_10);
+        Response response = apiClient.getBookingById("/10");
 
         //Проверяем, что статус-код ответа равен 200
         assertThat(response.getStatusCode()).isEqualTo(200);
@@ -73,12 +72,12 @@ public class HealthCheckTests {
         assertThat(bookingIds).isNotNull(); //Проверяем, что список не пуст
 
         // Проверка полей полученного ответа
-        assertEquals("Mary", bookingIds.getFirstname(), "firstname не совпадает");
-        assertEquals("Jackson", bookingIds.getLastname(), "lastname не совпадает");
-        assertEquals(888, bookingIds.getTotalprice(), "totalprice не совпадает");
+        assertEquals("Sally", bookingIds.getFirstname(), "firstname не совпадает");
+        assertEquals("Brown", bookingIds.getLastname(), "lastname не совпадает");
+        assertEquals(364, bookingIds.getTotalprice(), "totalprice не совпадает");
         assertEquals(false, bookingIds.isDepositpaid(), "depositpaid не совпадает");
-        assertEquals("2022-10-18", bookingIds.getBookingdates().getCheckin(), "checkin не совпадает");
-        assertEquals("2023-12-20", bookingIds.getBookingdates().getCheckout(), "checkout не совпадает");
+        assertEquals("2024-06-05", bookingIds.getBookingdates().getCheckin(), "checkin не совпадает");
+        assertEquals("2024-09-26", bookingIds.getBookingdates().getCheckout(), "checkout не совпадает");
         assertEquals("Breakfast", bookingIds.getAdditionalneeds(), "additionalneeds не совпадает");
     }
 }
