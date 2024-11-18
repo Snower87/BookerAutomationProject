@@ -56,7 +56,18 @@ public class APIClient {
     public Response getBooking() {
         return getRequestSpec()
                 .when()
-                .get(ApiEndpoint.BOOKING.getPath()) // используем ENUM для эндпоинта /ping
+                .get(ApiEndpoint.BOOKING.getPath()) // используем ENUM для эндпоинта /getBooking
+                .then()
+                .statusCode(200) //ожидаемый статус-код 200 OK
+                .extract()
+                .response();
+    }
+
+    //GET-запрос на эндпоинт /bookingId(10)
+    public Response getBookingById(ApiEndpoint ids) {
+        return getRequestSpec()
+                .when()
+                .get(ApiEndpoint.BOOKING.getPath() + ids.getPath()) // используем ENUM для эндпоинта /getBookingIds
                 .then()
                 .statusCode(200) //ожидаемый статус-код 200 OK
                 .extract()
