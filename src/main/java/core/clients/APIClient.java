@@ -132,4 +132,56 @@ public class APIClient {
                 .extract()
                 .response();
     }
+
+    //POST-запрос на создание бронирования
+    public Response createBooking(String newBooking) {
+        return getRequestSpec()
+                .body(newBooking)
+                .log().all()
+                .when()
+                .post(ApiEndpoint.BOOKING.getPath())
+                .then()
+                .log().all()
+                .extract()
+                .response();
+    }
+
+    //PUT-запрос на обновлении данных бронирования
+    public Response updateBooking(String newBooking, int bookingId) {
+        return getRequestSpec()
+                .body(newBooking)
+                .pathParam("id", bookingId)
+                .log().all()
+                .when()
+                .put(ApiEndpoint.BOOKING.getPath() + "/{id}")
+                .then()
+                .log().all()
+                .extract()
+                .response();
+    }
+
+    //PATCH-запрос на частичное обновлении данных
+    public Response partUpdateBooking(String newBooking, int bookingId) {
+        return getRequestSpec()
+                .body(newBooking)
+                .pathParam("id", bookingId)
+                .log().all()
+                .when()
+                .patch(ApiEndpoint.BOOKING.getPath() + "/{id}")
+                .then()
+                .log().all()
+                .extract()
+                .response();
+    }
+
+    //GET-запрос на эндпоинт /booking с параметрами
+    public Response filterBookingByParam(String filterByParam) {
+        return getRequestSpec()
+                .when()
+                .get(ApiEndpoint.BOOKING.getPath() + "?" + filterByParam) // используем ENUM для эндпоинта /getBooking
+                .then()
+                .log().all()
+                .extract()
+                .response();
+    }
 }

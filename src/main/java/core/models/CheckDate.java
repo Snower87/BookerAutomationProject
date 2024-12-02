@@ -7,6 +7,9 @@ public class CheckDate {
     private String checkin;
     private String checkout;
 
+    public CheckDate() {
+    }
+
     @JsonCreator
     public CheckDate(@JsonProperty("checkin") String checkin,
                      @JsonProperty("checkout") String checkout) {
